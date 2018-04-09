@@ -30,6 +30,7 @@ var upload = multer({ storage: storage ,
 });
 
 router.post('/employee', upload.single('imageupload'), addEmployee);
+
 router.get('/getList', function (req, res) {
     Employee.find(function(error,docs){
         for(var i = 0; i < docs.length;i++){

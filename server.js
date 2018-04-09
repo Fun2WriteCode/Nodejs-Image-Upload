@@ -20,10 +20,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('*', cors());
 
 var employee = require('./routes/employee');
+var register = require('./routes/register');
+var login = require('./routes/login');
 
 app.use('/Employee', employee);
+app.use('/User', login);
+app.use('/User', register);
 
-
+var appMiddleware = require('./tokenMiddleware/appMiddleware');
+app.use(appMiddleware.authenticateToken);
 
 //import Config File
 var config = require('./config');
